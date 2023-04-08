@@ -17,6 +17,19 @@ def count_letters(text):
         letter = letter.lower()
         letters_count[letter] = letters_count.get(letter, 0) + 1
     return letters_count
-    
+
+def print_report(filename, words_count, letters_count):
+    print(f'--- Begin report of {filename} ---')
+    print(f'{words_count} words found in the document\n')
+
+    letters_list = list(letters_count)
+    letters_list.sort()
+
+    for letter in letters_list:
+        print(f"The '{letter}' character was found {letters_count[letter]} times")
+
+    print('--- End report ---')
+
 words_count = count_words(content)
 letters_count = count_letters(content)
+print_report(fpath, words_count, letters_count)
