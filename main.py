@@ -1,9 +1,17 @@
+import sys
 import string
 
-fpath = 'books/frankenstein.txt'
+if len(sys.argv) != 2:
+    print('Usage: python main.py <file_name>')
+    exit(1)
 
-with open(fpath) as fhandle:
-    content = fhandle.read()
+fname = sys.argv[1]
+try:
+    with open(fname) as fhandle:
+        content = fhandle.read()
+except Exception as e:
+    print(e)
+    exit(1)
 
 def count_words(text):
     words = text.split()
@@ -32,4 +40,4 @@ def print_report(filename, words_count, letters_count):
 
 words_count = count_words(content)
 letters_count = count_letters(content)
-print_report(fpath, words_count, letters_count)
+print_report(fname, words_count, letters_count)
